@@ -1,0 +1,14 @@
+{
+    "name": "WEBD6201Sec005Group5_Lab1",
+    "version": "1.0.0",
+    "description": "Demo Site for Lab 1",
+    "main": "app.js",
+    "repository": "https://github.com/mdaustin/WEBD6201Sec005Group5_Lab01.git",
+    "authors": "MJ Galbraith & Matthew Austin",
+    "license": "MIT",
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.0.0-beta3",
+        "bootstrap": "^5.0.0-beta1",
+        "jquery": "^3.6.0"
+    }
+}
