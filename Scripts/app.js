@@ -135,38 +135,40 @@ let core;
 
         let body = document.getElementById("bodyCopy");
 
-        body.innerHTML = `<form onsubmit="event.preventDefault();">
-        <h2>Contact Us</h2>
-        <div class="form-group row">
-            <label for="inputFName" class="col-sm-2 col-form-label">First Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputFName" placeholder="First Name">
+        body.innerHTML = `<div class="card" style="background-color:grey">
+          <form onsubmit="event.preventDefault();">
+            <h2>Contact Us</h2>
+            <div class="form-group row">
+              <label for="inputFName" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputFName" placeholder="First Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputLName" class="col-sm-2 col-form-label">Last Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputLName" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Email Address</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputMessage" class="col-sm-2 col-form-label">Message</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputMessage" placeholder="Message">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button id="contactSubmit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
         </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputLName" class="col-sm-2 col-form-label">Last Name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputLName" placeholder="Last Name">
-        </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Email Address</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
-        </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputMessage" class="col-sm-2 col-form-label">Message</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputMessage" placeholder="Message">
-        </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-          <button id="contactSubmit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-        </form>
         `;
 
         $("#contactSubmit").on("click", (event)=>
@@ -185,6 +187,38 @@ let core;
         console.log("Disp Login"); 
 
         let body = document.getElementById("bodyCopy");
+
+        body.innerHTML = `<div class="offset-md-3 col-md-6 col-sm-12">
+          <div class="login" id="contentArea" style="background-color:grey">
+            <h1 class="display-4">Login</h1>
+            <form id="loginForm" novalidate>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </span>
+                  <input type="text" class="form-control" id="username" name="username"  required value="" placeholder="Enter your username">
+                </div>
+              </div>
+              <div class="form-group mb-2">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-lock"> </i>
+                  </span>
+                  <input type="password" class="form-control" id="password" name="password"  required value="" placeholder="Enter your password">
+                </div>
+              </div>
+              <div class="text-end">
+                <button id="loginButton" type="button" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <button id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</button>
+              </div>
+            </form>
+          </div>
+          <p class="text-center small">
+            Don't have an account? <a href="./register.html">Register Here!</a>
+          </p>
+        </div>
+        `;
     }
 
     function displayRegister()
@@ -192,6 +226,58 @@ let core;
         console.log("Disp Regi"); 
 
         let body = document.getElementById("bodyCopy");
+
+        body.innerHTML = `<div class="offset-md-3 col-md-6 col-sm-12">
+          <div class="login" id="contentArea" style="background-color:grey">
+            <h1 class="display-4">Register</h1>
+            <form id="registerForm" novalidate>
+              <p class="hint-text">Create your own account. It's free and only takes a minute.</p>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="email" class="form-control" id="emailAddress" name="emailAddress" required value="" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="password" class="form-control" id="password" name="password"  required value="" placeholder="Password">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  required
+                    value="" placeholder="Confirm Password">
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-right">
+                <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Register</button>
+              </div>
+            </form>
+          </div>
+          <p class="text-center small">
+            Already have an account? <a href="./login.html">Sign in</a>
+          </p>
+        </div>
+        `;
     }
 
     function goHome()
@@ -229,7 +315,7 @@ let core;
           case "Login":
               displayLogin();
             break;
-          case "register":
+          case "Register":
               displayRegister();
             break;
         }
