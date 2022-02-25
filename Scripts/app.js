@@ -186,104 +186,92 @@ let core;
     {
         console.log("Disp Login"); 
 
-        let body = document.getElementById("bodyCopy");
-
-        body.innerHTML = `<div class="offset-md-3 col-md-6 col-sm-12">
-          <div class="login" id="contentArea" style="background-color:grey">
-            <h1 class="display-4">Login</h1>
-            <form id="loginForm" novalidate>
-              <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="fa fa-user"></i>
-                  </span>
-                  <input type="text" class="form-control" id="username" name="username"  required value="" placeholder="Enter your username">
-                </div>
-              </div>
-              <div class="form-group mb-2">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="fa fa-lock"> </i>
-                  </span>
-                  <input type="password" class="form-control" id="password" name="password"  required value="" placeholder="Enter your password">
-                </div>
-              </div>
-              <div class="text-end">
-                <button id="loginButton" type="button" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
-                <button id="cancelButton" type="button" class="btn btn-warning"><i class="fas fa-undo"></i> Cancel</button>
-              </div>
-            </form>
-          </div>
-          <p class="text-center small">
-            Don't have an account? <a href="./register.html">Register Here!</a>
-          </p>
-        </div>
-        `;
     }
 
     function displayRegister()
     {
         console.log("Disp Regi"); 
 
-        let body = document.getElementById("bodyCopy");
+        document.getElementById("registerForm").insertAdjacentHTML("beforebegin", `<div id="ErrorMessage"></div>`);
 
-        body.innerHTML = `<div class="offset-md-3 col-md-6 col-sm-12">
-          <div class="login" id="contentArea" style="background-color:grey">
-            <h1 class="display-4">Register</h1>
-            <form id="registerForm" novalidate>
-              <p class="hint-text">Create your own account. It's free and only takes a minute.</p>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <input class="form-control" type="text" name="firstName" id="firstName" placeholder="First Name" required>
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Last Name" required>
-                  </div>
-                </div>
-              </div>
+        let errorMessage = $("#ErrorMessage");
+        errorMessage.hide();
 
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="email" class="form-control" id="emailAddress" name="emailAddress" required value="" placeholder="Email">
-                  </div>
-                </div>
-              </div>
+        $("#submitButton").on("click", function(event)
+        {
+          event.preventDefault();
 
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="password" class="form-control" id="password" name="password"  required value="" placeholder="Password">
-                  </div>
-                </div>
-              </div>
+          let firstName = $("#firstName");
+          let lastName = $("#lastName");
+          let emailAddress = $("#emailAddress");
+          let password = $("#password");
+          let confirmPassword = $("#confirmPassword");
+          let success = true;
+          let error = "Error: ";
 
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-12">
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  required
-                    value="" placeholder="Confirm Password">
-                  </div>
-                </div>
-              </div>
+          let nameExperssion = new RegExp("^[A-Z][a-zA-Z]+$"); 
+          let emailExpression = new RegExp("^[_a-zA-Z0-9\\-]+(\.[_a-zA-Z0-9\\-]+)@[_a-zA-Z0-9\\-]+(\.[_a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})$");
+          let passwordExpression = new RegExp("^[_a-zA-Z0-9-]{6,}$");
 
-              <div class="text-right">
-                <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Register</button>
-              </div>
-            </form>
-          </div>
-          <p class="text-center small">
-            Already have an account? <a href="./login.html">Sign in</a>
-          </p>
-        </div>
-        `;
+          if (!nameExperssion.test(firstName.val()))
+          {
+            error += "Invalid First Name (must be at least 2 letters)";
+            success = false;
+            firstName.trigger("focus").trigger("select");
+          }
+          else if (!nameExperssion.test(lastName.val()))
+          {
+            error += "Invalid Last Name (must be at least 2 letters)";
+            success = false;
+            lastName.trigger("focus").trigger("select");
+          }
+          else if (!emailExpression.test(emailAddress.val()))
+          {
+            error += "Invalid Email Address";
+            success = false;
+            emailAddress.trigger("focus").trigger("select");
+          }
+          else if (!passwordExpression.test(password.val()))
+          {
+            error += "Invalid Password (must be at least 6 characters)";
+            success = false;
+            password.trigger("focus").trigger("select");
+          }
+          else if (password.val() != confirmPassword.val())
+          {
+            error += "Passwords Need to Match";
+            success = false;
+            password.trigger("focus").trigger("select");
+          }
+
+          if (success)
+          {
+            errorMessage.hide();
+
+            let displayName = firstName.val() + " " + lastName.val();
+            let userName = firstName.val().toLocaleLowerCase() + lastName.val().toLocaleLowerCase();
+            let newUser = new core.User(displayName, emailAddress.val(), userName, password.val());
+
+            console.log(newUser.serialize());
+
+            document.forms[0].reset();
+          }
+          else
+          {
+            errorMessage.show().addClass("alert alert-danger").text(error);
+          }
+        });
     }
 
     function goHome()
     {
-        window.location.href = "./index.html"
+        window.location.href = "./index.html";
     }
+
+    // function validateRegister()
+    // {
+    //     let emailAddressPattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+    // }  ^[_a-zA-Z0-9\\-]+(\.[_a-zA-Z0-9\\-]+)@[_a-zA-Z0-9\\-]+(\.[_a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})$
 
     function Start()
     {
@@ -328,4 +316,89 @@ let core;
     window.addEventListener("load", Start);
 
     core.Start = Start;
+})(core || (core={}));
+
+((core) =>
+{
+    class User
+    {
+        // getters and setters 
+        get DisplayName()
+        {
+          return this.m_displayName;
+        }
+
+        set DisplayName(value)
+        {
+          this.m_displayName = value;
+        }
+
+        get EmailAddress()
+        {
+          return this.m_emailAddress;
+        }
+
+        set EmailAddress(value)
+        {
+          this.m_emailAddress = value;
+        }
+
+        get Username()
+        {
+          return this.m_username;
+        }
+
+        set Username(value)
+        {
+          this.m_username = value;
+        }
+
+        get Password()
+        {
+          return this.m_password;
+        }
+
+        set Password(value)
+        {
+          this.m_password = value;
+        }
+
+        // constructor
+        constructor(displayName = "", emailAddress = "", username = "", password = "")
+        {
+          this.DisplayName = displayName;
+          this.EmailAddress = emailAddress;
+          this.Username = username;
+          this.Password = password;
+        }
+
+        //methods
+        toString()
+        {
+          return `Display Name     : ${this.DisplayName} \nEmail Address : ${this.EmailAddress} \nUsername : ${this.Username}`;
+        }
+
+        serialize()
+        {
+          if (this.DisplayName !== "" && this.EmailAddress !== "" && this.Username !== "")
+          {
+            return `${this.DisplayName},${this.EmailAddress},${this.Username}`;
+          }
+          else
+          {
+            console.error("One or more properties of the User is empty");
+            return null;
+          }
+        }
+
+        deserialize(data)
+        {
+          let propertyArray = data.split(",");
+          this.DisplayName = propertyArray[0];
+          this.EmailAddress = propertyArray[1];
+          this.Username = propertyArray[2];
+        }
+    }
+
+    core.User = User;
 })(core || (core={}));
