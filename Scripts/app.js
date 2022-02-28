@@ -186,6 +186,14 @@ let core;
     {
         console.log("Disp Login"); 
 
+        $("#loginForm").submit ((event)=>
+        {
+            event.preventDefault();
+            event.stopPropagation();
+            $("#loginForm")[0].reset();
+            $("#login").hide();
+            $("logout").show();
+        })
     }
 
     function displayRegister()
