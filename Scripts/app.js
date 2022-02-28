@@ -186,7 +186,7 @@ let core;
     {
         console.log("Disp Login"); 
 
-        $("#loginForm").submit ((event)=>
+        $("#loginButton").on("click", function(event)
         {
             event.preventDefault();
             event.stopPropagation();
