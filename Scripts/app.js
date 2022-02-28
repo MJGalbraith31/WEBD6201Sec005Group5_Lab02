@@ -191,8 +191,8 @@ let core;
             event.preventDefault();
            
             let userName = $("#username").val();
-
-            $("#logio").before("<span class='navbar-text'>" + userName + "</span>");
+            
+            $("#login").before("<span class='navbar-text'>" + userName + "</span>");
         })
     }
 
