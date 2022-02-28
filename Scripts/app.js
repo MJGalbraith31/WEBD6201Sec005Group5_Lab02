@@ -192,7 +192,7 @@ let core;
            
             let userName = $("#username").val();
             
-            $("#logio").before("<span class='nav-item'>" + userName + "</span>");
+            $("#logio").before("<li><span class='nav-item'>" + userName + "</span></li>");
             $("#logio").html('<a class="nav-link active" id="logio" aria-current="page" href="login.html"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>')
             
 
