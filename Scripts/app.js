@@ -192,7 +192,7 @@ let core;
            
             let userName = $("#username");
 
-            $("#logio").before("<li><a>" + userName.val() + "</a></li>");
+            $("#logio").before("<li><a>" + userName.toString() + "</a></li>");
         })
     }
 
