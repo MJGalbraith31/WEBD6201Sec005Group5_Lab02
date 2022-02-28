@@ -189,10 +189,10 @@ let core;
         $("#loginButton").on("click", function(event)
         {
             event.preventDefault();
-            event.stopPropagation();
-            $("#loginForm")[0].reset();
-            $("#login").hide();
-            $("logout").show();
+           
+            let userName = $("#username");
+
+            $("#logio").before("<li><a>" + userName + "</a></li>");
         })
     }
 
