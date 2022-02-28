@@ -190,9 +190,9 @@ let core;
         {
             event.preventDefault();
            
-            let userName = $("#username");
+            let userName = $("#username").val();
 
-            $("#logio").before("<li><a>" + userName.toString() + "</a></li>");
+            $("#logio").before("<span class='navbar-text'>" + userName + "</span>");
         })
     }
 
