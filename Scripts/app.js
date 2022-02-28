@@ -192,7 +192,7 @@ let core;
            
             let userName = $("#username").val();
             
-            $("#login").before("<span class='navbar-text'>" + userName + "</span>");
+            $("#logio").before("<span class='nav-item'>" + userName + "</span>");
         })
     }
 
